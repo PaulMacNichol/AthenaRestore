@@ -12,10 +12,29 @@ public class TextMacro {
     }
 
     public TextMacro ( final String shortcut, final String users, final String section, final String expansion ) {
-        setShortcut( shortcut );
+        setShortcut( correctMacroName( shortcut ) );
         setUsers( users );
         setSection( section );
         setExpansion( expansion );
+    }
+
+    private String correctMacroName ( final String macroName ) {
+        final StringBuilder sb = new StringBuilder( macroName );
+
+        for ( int i = 0; i < macroName.length(); i++ ) {
+            if ( i == 0 ) {
+                sb.setCharAt( 0, Character.toUpperCase( sb.charAt( 0 ) ) );
+            }
+            if ( sb.charAt( i ) == '_' && i < sb.length() - 1 ) {
+                sb.setCharAt( i + 1, Character.toUpperCase( sb.charAt( i + 1 ) ) );
+            }
+
+            if ( sb.charAt( i ) == '\\' || sb.charAt( i ) == '/' || sb.charAt( i ) == ' ' ) {
+                sb.setCharAt( i, '_' );
+            }
+        }
+
+        return sb.toString();
     }
 
     /**
