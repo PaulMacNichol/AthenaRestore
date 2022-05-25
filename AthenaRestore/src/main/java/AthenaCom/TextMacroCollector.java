@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class TextMacroCollector {
 
-    private final String MACRO_URL = "https://api.preview.platform.athenahealth.com/v1/{6545}/textmacros";
+    private final String MACRO_URL = "https://api.preview.platform.athenahealth.com/v1/6545/textmacros";
 
     public TextMacroCollector () {
 

@@ -87,24 +87,27 @@ public class XLSXReader {
             final String fileName = currentMacro.getShortcut() + ".html";
             final String pathName = "./output/" + sheetName;
             final File folder = new File( pathName );
-            folder.mkdirs();
+            if ( !folder.exists() ) {
+                folder.mkdirs();
+            }
             final File xmlMacro = new File( pathName + "/" + fileName );
-            try {
-                xmlMacro.createNewFile();
-            }
-            catch ( final IOException e ) {
-                System.out.println( "Error creating file." );
-                e.printStackTrace();
-            }
-
-            try {
-                final FileWriter macroWriter = new FileWriter( pathName + "/" + fileName );
-                macroWriter.write( currentMacro.getExpansion() );
-                macroWriter.close();
-            }
-            catch ( final IOException e ) {
-                System.out.print( "Error writing file." );
-                e.printStackTrace();
+            if ( !xmlMacro.exists() ) {
+                try {
+                    xmlMacro.createNewFile();
+                }
+                catch ( final IOException e ) {
+                    System.out.println( "Error creating file." );
+                    e.printStackTrace();
+                }
+                try {
+                    final FileWriter macroWriter = new FileWriter( pathName + "/" + fileName );
+                    macroWriter.write( currentMacro.getExpansion() );
+                    macroWriter.close();
+                }
+                catch ( final IOException e ) {
+                    System.out.print( "Error writing file." );
+                    e.printStackTrace();
+                }
             }
         }
     }
