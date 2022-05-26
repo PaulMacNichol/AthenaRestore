@@ -85,7 +85,7 @@ public class XLSXReader {
         while ( macroIterator.hasNext() ) {
             final TextMacro currentMacro = macroIterator.next();
             final String fileName = currentMacro.getShortcut() + ".html";
-            final String pathName = "./output/" + sheetName;
+            final String pathName = "./text-macros/" + sheetName;
             final File folder = new File( pathName );
             if ( !folder.exists() ) {
                 folder.mkdirs();
