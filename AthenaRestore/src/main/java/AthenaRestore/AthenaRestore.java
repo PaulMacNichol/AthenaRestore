@@ -1,5 +1,10 @@
 package AthenaRestore;
 
+import java.io.IOException;
+import java.util.Scanner;
+
+import ExcelUtils.XLSXWriter;
+
 public class AthenaRestore {
     private static final String PATH = "./xlsx-workbooks/gmacnichol-macros.xlsx";
     private static String       sheetName;
@@ -15,7 +20,40 @@ public class AthenaRestore {
         System.out.println( "___________________________________________________________________________________" );
         System.out.println(
                 "Select and option:\n\t[1] Read from a specific sheet.\n\t[2] Read from entire workbook\n\t[3] Write markup files to XLSX workbook.\n\t[4] Retrieve Text Macros from AthenaHealth\n" );
-        System.out.println( ">> " );
+        System.out.print( ">> " );
+
+        final Scanner kb = new Scanner( System.in );
+        final int input = kb.nextInt();
+        switch ( input ) {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+                final XLSXWriter writer = new XLSXWriter();
+                try {
+                    writer.initWorkbook();
+                }
+                catch ( final IOException e1 ) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                System.out.print( "Specify a name for new workbook.\n>> " );
+                final String worksheetName = kb.next();
+                try {
+                    writer.saveWorksheet( worksheetName );
+                    System.out.println( "Done" );
+                }
+                catch ( final IOException e ) {
+                    e.printStackTrace();
+                }
+                break;
+            case 4:
+
+                break;
+        }
         // final TextMacroCollector tmc = new TextMacroCollector();
         // tmc.GET();
         // try {
